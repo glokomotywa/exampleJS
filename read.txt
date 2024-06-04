@@ -65,6 +65,18 @@ db.collection_name.find(); - all documents
 
 db.collection_name.find({ "city": "New York" }); - only in new york
 
+db.restaurants.find({
+  $or: [
+    { borough: "Bronx" },
+    { borough: "Manhattan" }
+  ]
+});
+
+db.restaurants.find({ 
+  borough: { $nin: ["Manhattan", "Bronx"] }  - nin = not in
+});
+
+
 db.collection_name.findOne({ "name": "Alice" });
 
 db.collection_name.find({ "city": "New York" }, { "name": 1, "age": 1, "_id": 0 }); - only in new york, will project only name and age
@@ -93,6 +105,9 @@ db.collection_name.replaceOne(
 db.collection_name.deleteOne({ "name": "Alice" });
 
 db.collection_name.deleteMany({ "city": "NYC" });
+
+db.collection_name.find({ "name": { $regex: "gi", $options: "i" } });
+
 
 AGREGACJA
 
